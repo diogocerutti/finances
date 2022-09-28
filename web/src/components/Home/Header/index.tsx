@@ -24,7 +24,7 @@ export function Header() {
         display="flex"
         justifyContent="space-between"
         alignItems="flex-start"
-        width={{ lg: '1120px', md: '620px', sm: '320px' }}
+        width={{ lg: '1120px', md: '922px', sm: '622px', xs: '384px' }}
       >
         <Grid display="flex" alignItems="center">
           <Grid item sx={{ mr: 1 }}>
