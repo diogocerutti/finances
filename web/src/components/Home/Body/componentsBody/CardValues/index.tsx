@@ -1,21 +1,15 @@
 import { Grid, Typography } from '@mui/material'
+import { MainGrid } from './componentsCardValues/MainGrid'
 
-export function Values() {
+export function CardValues() {
   return (
-    <Grid
-      item
-      columnGap={2}
-      sx={{ position: 'relative', bottom: 68 }}
-      display="flex"
-      flexDirection={{ lg: 'row', md: 'row', sm: 'row', xs: 'column' }}
-    >
+    <MainGrid>
       <Grid
         item
         width={{ lg: '352px', md: '286px', sm: '186px', xs: '352px' }}
         sx={{
           background: 'white',
           borderRadius: 1,
-
           height: '136px'
         }}
         justifyContent="center"
@@ -67,6 +61,6 @@ export function Values() {
           aaa
         </Typography>
       </Grid>
-    </Grid>
+    </MainGrid>
   )
 }

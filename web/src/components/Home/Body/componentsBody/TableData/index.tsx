@@ -1,22 +1,18 @@
 import {
-  Table,
   TableContainer,
   TableBody,
   TableCell,
   TableHead,
-  TableRow,
-  Stack
+  TableRow
 } from '@mui/material'
+import { MainStack } from './componentsTableData/MainStack'
+import { MainTable } from './componentsTableData/MainTable'
 
 export function TableData() {
   return (
-    <Stack width={{ lg: '1088px', md: '890px', sm: '590px', xs: '352px' }}>
+    <MainStack>
       <TableContainer>
-        <Table
-          sx={{
-            display: { lg: 'table', md: 'table', sm: 'table', xs: 'none' }
-          }}
-        >
+        <MainTable>
           <TableHead>
             <TableRow>
               <TableCell sx={{ color: '#969CB3' }}>Título</TableCell>
@@ -39,8 +35,8 @@ export function TableData() {
               <TableCell align="left">a</TableCell>
             </TableRow>
           </TableBody>
-        </Table>
+        </MainTable>
       </TableContainer>
-    </Stack>
+    </MainStack>
   )
 }
