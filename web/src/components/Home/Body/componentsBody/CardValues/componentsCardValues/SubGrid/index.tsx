@@ -3,20 +3,20 @@ import { ReactNode } from 'react'
 
 type SubGridTypes = {
   children: ReactNode
+  background: string
 }
 
-export function SubGrid({ children }: SubGridTypes) {
+export function SubGrid({ children, background }: SubGridTypes) {
   return (
     <Grid
       item
-      width={{ lg: '352px', md: '286px', sm: '186px', xs: '352px' }}
+      width={{ lg: '352px', md: 'auto', sm: 'auto', xs: 'auto' }}
       sx={{
-        background: 'white',
+        background: background,
         borderRadius: 1,
-        height: '136px'
+        height: 'auto',
+        padding: 3
       }}
-      justifyContent="center"
-      display="flex"
     >
       {children}
     </Grid>

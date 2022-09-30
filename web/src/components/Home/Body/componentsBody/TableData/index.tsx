@@ -1,12 +1,7 @@
-import {
-  TableContainer,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow
-} from '@mui/material'
+import { TableContainer, TableBody, TableHead, TableRow } from '@mui/material'
 import { MainStack } from './componentsTableData/MainStack'
 import { MainTable } from './componentsTableData/MainTable'
+import { CustomCell } from './componentsTableData/CustomCell'
 
 export function TableData() {
   return (
@@ -15,24 +10,24 @@ export function TableData() {
         <MainTable>
           <TableHead>
             <TableRow>
-              <TableCell sx={{ color: '#969CB3' }}>Título</TableCell>
-              <TableCell sx={{ color: '#969CB3' }} align="left">
+              <CustomCell color="#969CB2">Título</CustomCell>
+              <CustomCell color="#969CB2" align="left">
                 Preço
-              </TableCell>
-              <TableCell sx={{ color: '#969CB3' }} align="left">
+              </CustomCell>
+              <CustomCell color="#969CB2" align="left">
                 Categoria
-              </TableCell>
-              <TableCell sx={{ color: '#969CB3' }} align="left">
+              </CustomCell>
+              <CustomCell color="#969CB2" align="left">
                 Data
-              </TableCell>
+              </CustomCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            <TableRow sx={{ background: '#FFFFFF' }}>
-              <TableCell>a</TableCell>
-              <TableCell align="left">a</TableCell>
-              <TableCell align="left">a</TableCell>
-              <TableCell align="left">a</TableCell>
+            <TableRow sx={{ background: '#FFF' }}>
+              <CustomCell>Desenvolvimento</CustomCell>
+              <CustomCell align="left">R$ 1.200</CustomCell>
+              <CustomCell align="left">Venda</CustomCell>
+              <CustomCell align="left">13/10/2022</CustomCell>
             </TableRow>
           </TableBody>
         </MainTable>

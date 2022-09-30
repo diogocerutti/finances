@@ -1,32 +1,20 @@
 import PaidIcon from '@mui/icons-material/Paid'
-import { Button, Grid, Typography } from '@mui/material'
+import { Grid, Typography } from '@mui/material'
+import { HeaderGrid } from './componentsHeader/HeaderGrid'
+import { HeaderSubGrid } from './componentsHeader/HeaderSubGrid'
+import { TransactionButton } from './componentsHeader/TransactionButton'
+import { TransactionModal } from './componentsHeader/TransactionModal'
+import { useState } from 'react'
 
 export function Header() {
+  const [open, setOpen] = useState(false)
+  const handleOpen = () => setOpen(true)
+  const handleClose = () => setOpen(false)
+
   return (
-    <Grid
-      item
-      xs={12}
-      sm={12}
-      md={12}
-      lg={12}
-      sx={{
-        background: '#5429CC',
-        height: '212px',
-        display: 'flex',
-        justifyContent: 'center'
-      }}
-    >
-      <Grid
-        item
-        sx={{
-          mt: 4
-        }}
-        display="flex"
-        justifyContent="space-between"
-        alignItems="flex-start"
-        width={{ lg: '1120px', md: '922px', sm: '622px', xs: '384px' }}
-      >
-        <Grid display="flex" alignItems="center">
+    <HeaderGrid>
+      <HeaderSubGrid>
+        <Grid item display="flex" alignItems="center">
           <Grid item sx={{ mr: 1 }}>
             <PaidIcon sx={{ color: '#33CC95', fontSize: '3rem' }} />
           </Grid>
@@ -40,19 +28,12 @@ export function Header() {
           </Grid>
         </Grid>
         <Grid item>
-          <Button
-            sx={{
-              background: '#6933FF',
-              color: 'white',
-              fontSize: '16px',
-              width: '195px',
-              height: '48px'
-            }}
-          >
+          <TransactionButton onClick={handleOpen}>
             Nova transação
-          </Button>
+          </TransactionButton>
         </Grid>
-      </Grid>
-    </Grid>
+      </HeaderSubGrid>
+      <TransactionModal open={open} onClose={handleClose} />
+    </HeaderGrid>
   )
 }
