@@ -2,7 +2,7 @@ import { DefaultContainer } from '../../components/Home/DefaultContainer'
 import { Header } from '../../components/Home/Header'
 import { Body } from '../../components/Home/Body'
 
-export default function Home() {
+export function HomeTemplate() {
   return (
     <DefaultContainer>
       <Header />
