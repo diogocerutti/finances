@@ -1,24 +1,35 @@
-import {
-  Modal,
-  Stack,
-  TextField,
-  ToggleButton,
-  ToggleButtonGroup,
-  Button,
-  Typography,
-  IconButton
-} from '@mui/material'
+import { Modal, IconButton, Stack } from '@mui/material'
 import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp'
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown'
 import CloseIcon from '@mui/icons-material/Close'
+import { FormStack } from './componentsTransactionModal/FormStack'
+import { ModalTitle } from './componentsTransactionModal/ModalTitle'
+import { TextFieldCustom } from './componentsTransactionModal/TextFieldCustom'
+import { TypeButton } from './componentsTransactionModal/TypeButton'
+import { SubmitButton } from './componentsTransactionModal/SubmitButton'
 import { ReactEventHandler } from 'react'
+import { useForm, SubmitHandler } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { validation } from '../../../../../validations/Home'
 
 type TransactionModalTypes = {
   open: boolean
   onClose: ReactEventHandler
 }
 
+type FormTypes = {
+  title: string
+  price: number
+  category: string
+  type: string
+}
+
 export function TransactionModal({ open, onClose }: TransactionModalTypes) {
+  const { handleSubmit, control, setValue, watch } = useForm<FormTypes>({
+    resolver: yupResolver(validation)
+  })
+  const onSubmit: SubmitHandler<FormTypes> = (data) => console.log(data)
+
   return (
     <Modal
       open={open}
@@ -39,73 +50,40 @@ export function TransactionModal({ open, onClose }: TransactionModalTypes) {
             }}
           />
         </IconButton>
-        <Stack
-          component="form"
-          autoComplete="off"
-          spacing={2}
-          display={{ lg: 'flex', md: 'flex', sm: 'flex', xs: 'none' }}
-          sx={{
-            background: '#F0F2F5',
-            borderRadius: '5px',
-            alignSelf: 'center',
-            width: { lg: '576px', md: 'auto', sm: 'auto', xs: 'auto' },
-            pt: '64px',
-            pb: '64px',
-            pr: '48px',
-            pl: '48px'
-          }}
-        >
-          <Typography
-            sx={{
-              fontWeight: 'bold',
-              fontSize: '24px',
-              lineHeight: '36px',
-              mb: '16px'
-            }}
-          >
-            Cadastrar transação
-          </Typography>
+        <FormStack onSubmit={handleSubmit(onSubmit)}>
+          <ModalTitle text="Cadastrar transação" />
 
-          <TextField
-            sx={{ background: '#E7E9EE' }}
-            name="name"
-            label="Nome"
-            variant="outlined"
-          />
-          <TextField
-            sx={{ background: '#E7E9EE' }}
-            name="price"
-            label="Preço"
-            variant="outlined"
-          />
-          <ToggleButtonGroup exclusive sx={{ justifyContent: 'space-between' }}>
-            <ToggleButton value="" sx={{ width: '236px', fontSize: '16px' }}>
-              <ArrowCircleUpIcon sx={{ color: '#12A454' }} />
+          <TextFieldCustom name="title" label="Nome" control={control} />
+          <TextFieldCustom name="price" label="Preço" control={control} />
+
+          <Stack direction="row" justifyContent="space-between">
+            <TypeButton
+              onClick={() => setValue('type', 'deposit')}
+              background={watch('type') === 'deposit' ? '#D2D2D2' : 'inherit'}
+            >
+              <ArrowCircleUpIcon sx={{ color: '#12A454', marginRight: '6%' }} />
               Entrada
-            </ToggleButton>
-            <ToggleButton value="" sx={{ width: '236px', fontSize: '16px' }}>
-              <ArrowCircleDownIcon sx={{ color: '#E52E4D' }} />
+            </TypeButton>
+
+            <TypeButton
+              onClick={() => setValue('type', 'withdraw')}
+              background={watch('type') === 'withdraw' ? '#D2D2D2' : 'inherit'}
+            >
+              <ArrowCircleDownIcon
+                sx={{ color: '#E52E4D', marginRight: '6%' }}
+              />
               Saída
-            </ToggleButton>
-          </ToggleButtonGroup>
-          <TextField
-            sx={{ background: '#E7E9EE' }}
-            name="price"
+            </TypeButton>
+          </Stack>
+
+          <TextFieldCustom
+            name="category"
             label="Categoria"
-            variant="outlined"
+            control={control}
           />
-          <Button
-            type="submit"
-            sx={{
-              background: '#33CC95',
-              color: '#FFF',
-              height: '64px',
-              fontSize: '16px'
-            }}
-          >
-            Cadastrar
-          </Button>
-        </Stack>
+
+          <SubmitButton>Cadastrar</SubmitButton>
+        </FormStack>
       </>
     </Modal>
   )

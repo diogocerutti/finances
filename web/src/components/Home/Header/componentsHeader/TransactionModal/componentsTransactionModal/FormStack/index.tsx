@@ -1,18 +1,16 @@
 import { Stack } from '@mui/material'
-import { useForm, Controller } from 'react-hook-form'
-import { ReactNode } from 'react'
+import { ReactNode, FormEventHandler } from 'react'
 
 type FormStackTypes = {
   children: ReactNode
+  onSubmit: FormEventHandler
 }
 
-export function FormStack({ children }: FormStackTypes) {
-  const { handleSubmit, control } = useForm()
-
+export function FormStack({ children, onSubmit }: FormStackTypes) {
   return (
     <Stack
       component="form"
-      onSubmit={handleSubmit((data) => console.log(data))}
+      onSubmit={onSubmit}
       autoComplete="off"
       spacing={2}
       display={{ lg: 'flex', md: 'flex', sm: 'flex', xs: 'none' }}
