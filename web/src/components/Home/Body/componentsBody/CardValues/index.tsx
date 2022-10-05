@@ -4,8 +4,19 @@ import { SubGrid } from './componentsCardValues/SubGrid'
 import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp'
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown'
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney'
+import { useEffect } from 'react'
+// import { Transaction } from '../../../../../global/interfaces/Transaction'
+import { getData } from '../../../../../service/gets/getData'
 
 export function CardValues() {
+  useEffect(() => {
+    async function getApi() {
+      const values = await getData()
+      return values
+    }
+    getApi()
+  }, [])
+
   return (
     <MainGrid>
       <SubGrid background="#FFF">
@@ -13,7 +24,7 @@ export function CardValues() {
           <Typography>Entradas</Typography>
           <ArrowCircleUpIcon sx={{ color: '#33CC95', fontSize: '30px' }} />
         </Grid>
-        <Typography fontSize="36px">R$ 17.400,00</Typography>
+        <Typography fontSize="36px">34234</Typography>
       </SubGrid>
       <SubGrid background="#FFF">
         <Grid item display="flex" justifyContent="space-between">

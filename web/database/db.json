@@ -2,22 +2,25 @@
   "finances": [
     {
       "id": 1,
-      "title": "Aluguel",
-      "price": 1000,
+      "title": "Salario",
+      "type": "deposit",
+      "amount": 1000,
       "category": "Casa",
       "date": "2021-02-01T00:00:00"
     },
     {
       "id": 2,
       "title": "Carro",
-      "price": 1000,
+      "type": "withdraw",
+      "amount": 1000,
       "category": "Transporte",
       "date": "2021-02-01T00:00:00"
     },
     {
       "id": 3,
       "title": "Viagem",
-      "price": 1000,
+      "type": "withdraw",
+      "amount": 1000,
       "category": "laser",
       "date": "2021-02-01T23:59:59"
     }

@@ -2,8 +2,17 @@ import { TableContainer, TableBody, TableHead, TableRow } from '@mui/material'
 import { MainStack } from './componentsTableData/MainStack'
 import { MainTable } from './componentsTableData/MainTable'
 import { CustomCell } from './componentsTableData/CustomCell'
+import { getData } from '../../../../../service/gets/getData'
+import { useEffect, useState } from 'react'
+import { Transaction } from '../../../../../global/interfaces/Transaction'
 
 export function TableData() {
+  const [data, setData] = useState(Array<Transaction>)
+
+  useEffect(() => {
+    getData().then((data) => setData(data))
+  }, [])
+
   return (
     <MainStack>
       <TableContainer>
@@ -23,12 +32,14 @@ export function TableData() {
             </TableRow>
           </TableHead>
           <TableBody>
-            <TableRow sx={{ background: '#FFF' }}>
-              <CustomCell>Desenvolvimento</CustomCell>
-              <CustomCell align="left">R$ 1.200</CustomCell>
-              <CustomCell align="left">Venda</CustomCell>
-              <CustomCell align="left">13/10/2022</CustomCell>
-            </TableRow>
+            {data.map((i) => (
+              <TableRow key={i.id} sx={{ background: '#FFF' }}>
+                <CustomCell>{i.title}</CustomCell>
+                <CustomCell align="left">{i.amount}</CustomCell>
+                <CustomCell align="left">{i.category}</CustomCell>
+                <CustomCell align="left">{i.date}</CustomCell>
+              </TableRow>
+            ))}
           </TableBody>
         </MainTable>
       </TableContainer>
