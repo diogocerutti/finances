@@ -1,12 +1,13 @@
 import * as yup from 'yup'
 
 export const validation = yup.object().shape({
-  title: yup.string().trim().required('Nome obrigatório.'),
-  price: yup
+  title: yup
     .string()
     .trim()
-    .required('Preço obrigatório.')
-    .matches(/^[0-9]+$/, 'Campo inválido.'),
+    .required('Nome obrigatório.')
+    .min(3, 'Limite mínimo de 3 caracteres.')
+    .max(15, 'Limite máximo de 15 caracteres.'),
+  amount: yup.number().required('Preço obrigatório.'),
   category: yup
     .string()
     .trim()

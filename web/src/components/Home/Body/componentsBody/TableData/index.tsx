@@ -35,7 +35,12 @@ export function TableData() {
             {data.map((i) => (
               <TableRow key={i.id} sx={{ background: '#FFF' }}>
                 <CustomCell>{i.title}</CustomCell>
-                <CustomCell align="left">{i.amount}</CustomCell>
+                <CustomCell
+                  align="left"
+                  color={i.type === 'deposit' ? '#33CC95' : '#E52E4D'}
+                >
+                  {i.amount}
+                </CustomCell>
                 <CustomCell align="left">{i.category}</CustomCell>
                 <CustomCell align="left">{i.date}</CustomCell>
               </TableRow>

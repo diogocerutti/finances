@@ -1,17 +1,11 @@
 import { TextField } from '@mui/material'
 import { Controller, Control } from 'react-hook-form'
-
-type FormTypes = {
-  title: string
-  price: number
-  category: string
-  type: string
-}
+import { FormSubmit } from '../../../../../../../global/interfaces/FormSubmit'
 
 type TextFieldCustomTypes = {
-  name: 'title' | 'price' | 'category'
+  name: 'title' | 'amount' | 'category'
   label: string
-  control: Control<FormTypes>
+  control: Control<FormSubmit>
 }
 
 export function TextFieldCustom({
