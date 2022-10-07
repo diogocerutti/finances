@@ -1,10 +1,10 @@
 import { Typography } from '@mui/material'
 
-type ModalTitleTypes = {
+type FormTitleTypes = {
   text: string
 }
 
-export function ModalTitle({ text }: ModalTitleTypes) {
+export function FormTitle({ text }: FormTitleTypes) {
   return (
     <Typography
       sx={{

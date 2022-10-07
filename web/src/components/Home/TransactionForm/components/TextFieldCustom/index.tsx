@@ -1,6 +1,6 @@
 import { TextField } from '@mui/material'
 import { Controller, Control } from 'react-hook-form'
-import { FormSubmit } from '../../../../../../../global/interfaces/FormSubmit'
+import { FormSubmit } from '../../../../../global/interfaces/FormSubmit'
 
 type TextFieldCustomTypes = {
   name: 'title' | 'amount' | 'category'

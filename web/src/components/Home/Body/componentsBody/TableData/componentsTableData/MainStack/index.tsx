@@ -6,9 +6,5 @@ type MainStackTypes = {
 }
 
 export function MainStack({ children }: MainStackTypes) {
-  return (
-    <Stack width={{ lg: '1088px', md: '890px', sm: '590px', xs: '352px' }}>
-      {children}
-    </Stack>
-  )
+  return <Stack width="auto">{children}</Stack>
 }

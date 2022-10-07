@@ -37,14 +37,26 @@ export function CardValues() {
           <Typography>Entradas</Typography>
           <ArrowCircleUpIcon sx={{ color: '#33CC95', fontSize: '30px' }} />
         </Grid>
-        <Typography fontSize="36px">{deposits}</Typography>
+        <Typography fontSize="36px">
+          R${' '}
+          {parseFloat(deposits.toFixed(2)).toLocaleString('pt-BR', {
+            currency: 'BRL',
+            minimumFractionDigits: 2
+          })}
+        </Typography>
       </SubGrid>
       <SubGrid background="#FFF">
         <Grid item display="flex" justifyContent="space-between">
           <Typography>Saídas</Typography>
           <ArrowCircleDownIcon sx={{ color: '#E52E4D', fontSize: '30px' }} />
         </Grid>
-        <Typography fontSize="36px">{withdraws}</Typography>
+        <Typography fontSize="36px">
+          R${' '}
+          {parseFloat(withdraws.toFixed(2)).toLocaleString('pt-BR', {
+            currency: 'BRL',
+            minimumFractionDigits: 2
+          })}
+        </Typography>
       </SubGrid>
       <SubGrid background={total > 0 ? '#33CC95' : '#E52E4D'}>
         <Grid item display="flex" justifyContent="space-between">
@@ -52,7 +64,11 @@ export function CardValues() {
           <AttachMoneyIcon sx={{ color: '#FFF', fontSize: '30px' }} />
         </Grid>
         <Typography color="#FFF" fontSize="36px">
-          {total}
+          R${' '}
+          {parseFloat(total.toFixed(2)).toLocaleString('pt-BR', {
+            currency: 'BRL',
+            minimumFractionDigits: 2
+          })}
         </Typography>
       </SubGrid>
     </MainGrid>

@@ -18,7 +18,8 @@ export function TransactionButton({
         color: 'white',
         fontSize: '16px',
         width: '195px',
-        height: '48px'
+        height: '48px',
+        fontWeight: 600
       }}
     >
       {children}

@@ -1,15 +1,22 @@
 import { TableCell } from '@mui/material'
-import { ReactNode } from 'react'
+import { ReactNode, MouseEventHandler } from 'react'
 
 type CustomCellTypes = {
   children: ReactNode
   color?: string
   align?: string
+  onClick?: MouseEventHandler
 }
 
-export function CustomCell({ children, color, align }: CustomCellTypes) {
+export function CustomCell({
+  children,
+  color,
+  align,
+  onClick
+}: CustomCellTypes) {
   return (
     <TableCell
+      onClick={onClick}
       sx={{
         color: color,
         align: align

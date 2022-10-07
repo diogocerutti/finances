@@ -8,9 +8,12 @@ export const defaultTheme = createTheme(
     typography: {
       fontFamily: 'Poppins Regular, sans-seriff',
       button: {
-        fontFamily: 'Poppins Semi-Bold, sans-serif',
+        fontFamily: 'Poppins Regular, sans-serif',
         textTransform: 'none'
       }
+    },
+    components: {
+      MuiTableHead: {}
     }
   },
   ptBR

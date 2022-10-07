@@ -2,24 +2,26 @@ import { Modal, IconButton, Stack } from '@mui/material'
 import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp'
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown'
 import CloseIcon from '@mui/icons-material/Close'
-import { FormStack } from '../../../TransactionForm/components/FormStack'
-import { FormTitle } from '../../../TransactionForm/components/FormTitle'
-import { TextFieldCustom } from '../../../TransactionForm/components/TextFieldCustom'
-import { TypeButtonCustom } from '../../../TransactionForm/components/TypeButtonCustom'
-import { SubmitButtonCustom } from '../../../TransactionForm/components/SubmitButtonCustom'
+import { FormStack } from '../../../../../TransactionForm/components/FormStack'
+import { FormTitle } from '../../../../../TransactionForm/components/FormTitle'
+import { TextFieldCustom } from '../../../../../TransactionForm/components/TextFieldCustom'
+import { TypeButtonCustom } from '../../../../../TransactionForm/components/TypeButtonCustom'
+import { SubmitButtonCustom } from '../../../../../TransactionForm/components/SubmitButtonCustom'
 import { ReactEventHandler } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { validation } from '../../../../../validations/Home'
-import { FormSubmit } from '../../../../../global/interfaces/FormSubmit'
-import { postData } from '../../../../../service/posts/postData'
+import { validation } from '../../../../../../../validations/Home'
+import { FormSubmit } from '../../../../../../../global/interfaces/FormSubmit'
 
-type TransactionModalTypes = {
+type TransactionEditModalTypes = {
   open: boolean
   onClose: ReactEventHandler
 }
 
-export function TransactionModal({ open, onClose }: TransactionModalTypes) {
+export function TransactionEditModal({
+  open,
+  onClose
+}: TransactionEditModalTypes) {
   const { handleSubmit, control, setValue, watch } = useForm<FormSubmit>({
     resolver: yupResolver(validation),
     defaultValues: {
@@ -31,7 +33,7 @@ export function TransactionModal({ open, onClose }: TransactionModalTypes) {
     }
   })
   const onSubmit: SubmitHandler<FormSubmit> = (data) => {
-    postData(data)
+    console.log('EDITADO:', data)
   }
 
   return (
@@ -56,7 +58,7 @@ export function TransactionModal({ open, onClose }: TransactionModalTypes) {
           />
         </IconButton>
         <FormStack onSubmit={(data) => handleSubmit(onSubmit)(data)}>
-          <FormTitle text="Cadastrar transação" />
+          <FormTitle text="Editar transação" />
 
           <TextFieldCustom name="title" label="Nome" control={control} />
           <TextFieldCustom name="amount" label="Preço" control={control} />
@@ -99,7 +101,7 @@ export function TransactionModal({ open, onClose }: TransactionModalTypes) {
             control={control}
           />
 
-          <SubmitButtonCustom>Cadastrar</SubmitButtonCustom>
+          <SubmitButtonCustom>Salvar</SubmitButtonCustom>
         </FormStack>
       </>
     </Modal>

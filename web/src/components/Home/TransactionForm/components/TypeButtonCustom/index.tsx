@@ -1,23 +1,23 @@
 import { Button } from '@mui/material'
 import { MouseEventHandler, ReactNode } from 'react'
 import { Controller, Control } from 'react-hook-form'
-import { FormSubmit } from '../../../../../../../global/interfaces/FormSubmit'
+import { FormSubmit } from '../../../../../global/interfaces/FormSubmit'
 
-type TypeButtonTypes = {
+type TypeButtonCustomTypes = {
   onClick: MouseEventHandler
-  backgroundOp: string
+  background: string
   children: ReactNode
   control: Control<FormSubmit>
   name: 'title' | 'type' | 'category' | 'amount'
 }
 
-export function TypeButton({
+export function TypeButtonCustom({
   onClick,
-  backgroundOp,
+  background,
   children,
   control,
   name
-}: TypeButtonTypes) {
+}: TypeButtonCustomTypes) {
   return (
     <Controller
       control={control}
@@ -30,8 +30,9 @@ export function TypeButton({
             width: '236px',
             fontSize: '16px',
             height: '64px',
-            background: backgroundOp,
-            color: '#363F5F'
+            background: background,
+            color: '#363F5F',
+            fontWeight: 400
           }}
         >
           {children}

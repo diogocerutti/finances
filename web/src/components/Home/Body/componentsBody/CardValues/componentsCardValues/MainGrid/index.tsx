@@ -10,9 +10,9 @@ export function MainGrid({ children }: MainGridTypes) {
     <Grid
       item
       columnGap={2}
-      sx={{ position: 'relative', bottom: 68 }}
       display="flex"
       flexDirection={{ lg: 'row', md: 'row', sm: 'row', xs: 'column' }}
+      width="auto"
     >
       {children}
     </Grid>

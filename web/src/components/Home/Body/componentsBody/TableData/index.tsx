@@ -2,12 +2,16 @@ import { TableContainer, TableBody, TableHead, TableRow } from '@mui/material'
 import { MainStack } from './componentsTableData/MainStack'
 import { MainTable } from './componentsTableData/MainTable'
 import { CustomCell } from './componentsTableData/CustomCell'
+import { TransactionEditModal } from './componentsTableData/TransactionEditModal'
 import { getData } from '../../../../../service/gets/getData'
 import { useEffect, useState } from 'react'
 import { Transaction } from '../../../../../global/interfaces/Transaction'
 
 export function TableData() {
   const [data, setData] = useState(Array<Transaction>)
+  const [open, setOpen] = useState(false)
+  const handleOpen = () => setOpen(true)
+  const handleClose = () => setOpen(false)
 
   useEffect(() => {
     getData().then((data) => setData(data))
@@ -15,7 +19,7 @@ export function TableData() {
 
   return (
     <MainStack>
-      <TableContainer>
+      <TableContainer sx={{ maxHeight: '322.08px' }}>
         <MainTable>
           <TableHead>
             <TableRow>
@@ -33,21 +37,36 @@ export function TableData() {
           </TableHead>
           <TableBody>
             {data.map((i) => (
-              <TableRow key={i.id} sx={{ background: '#FFF' }}>
-                <CustomCell>{i.title}</CustomCell>
+              <TableRow
+                onClick={handleOpen}
+                key={i.id}
+                sx={{
+                  background: '#FFF'
+                }}
+              >
+                <CustomCell color="#363F5F">{i.title}</CustomCell>
                 <CustomCell
                   align="left"
                   color={i.type === 'deposit' ? '#33CC95' : '#E52E4D'}
                 >
-                  {i.amount}
+                  {i.type === 'deposit' ? 'R$ ' : '- R$ '}
+                  {parseFloat(i.amount.toFixed(2)).toLocaleString('pt-BR', {
+                    currency: 'BRL',
+                    minimumFractionDigits: 2
+                  })}
                 </CustomCell>
-                <CustomCell align="left">{i.category}</CustomCell>
-                <CustomCell align="left">{i.date}</CustomCell>
+                <CustomCell align="left" color="#969CB2">
+                  {i.category}
+                </CustomCell>
+                <CustomCell align="left" color="#969CB2">
+                  {i.date}
+                </CustomCell>
               </TableRow>
             ))}
           </TableBody>
         </MainTable>
       </TableContainer>
+      <TransactionEditModal open={open} onClose={handleClose} />
     </MainStack>
   )
 }
