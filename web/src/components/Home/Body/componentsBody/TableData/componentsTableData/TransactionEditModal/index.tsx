@@ -7,34 +7,40 @@ import { FormTitle } from '../../../../../TransactionForm/components/FormTitle'
 import { TextFieldCustom } from '../../../../../TransactionForm/components/TextFieldCustom'
 import { TypeButtonCustom } from '../../../../../TransactionForm/components/TypeButtonCustom'
 import { SubmitButtonCustom } from '../../../../../TransactionForm/components/SubmitButtonCustom'
-import { ReactEventHandler } from 'react'
+import { ReactEventHandler, useMemo, useEffect } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { validation } from '../../../../../../../validations/Home'
 import { FormSubmit } from '../../../../../../../global/interfaces/FormSubmit'
+import { Transaction } from '../../../../../../../global/interfaces/Transaction'
+import { putData } from '../../../../../../../service/puts/putsData'
 
 type TransactionEditModalTypes = {
   open: boolean
   onClose: ReactEventHandler
+  props: Transaction | undefined
 }
 
 export function TransactionEditModal({
   open,
-  onClose
+  onClose,
+  props
 }: TransactionEditModalTypes) {
-  const { handleSubmit, control, setValue, watch } = useForm<FormSubmit>({
-    resolver: yupResolver(validation),
-    defaultValues: {
-      title: '',
-      category: '',
-      amount: 0,
-      type: 'deposit',
-      date: new Date().toISOString().substring(0, 10)
+  const { handleSubmit, control, setValue, watch, reset } = useForm<FormSubmit>(
+    {
+      resolver: yupResolver(validation),
+      defaultValues: useMemo(() => {
+        return props
+      }, [props])
     }
-  })
+  )
   const onSubmit: SubmitHandler<FormSubmit> = (data) => {
-    console.log('EDITADO:', data)
+    putData(data)
   }
+
+  useEffect(() => {
+    reset(props)
+  }, [props])
 
   return (
     <Modal

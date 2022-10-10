@@ -20,18 +20,21 @@ type TransactionModalTypes = {
 }
 
 export function TransactionModal({ open, onClose }: TransactionModalTypes) {
-  const { handleSubmit, control, setValue, watch } = useForm<FormSubmit>({
-    resolver: yupResolver(validation),
-    defaultValues: {
-      title: '',
-      category: '',
-      amount: 0,
-      type: 'deposit',
-      date: new Date().toISOString().substring(0, 10)
+  const { handleSubmit, control, setValue, watch, reset } = useForm<FormSubmit>(
+    {
+      resolver: yupResolver(validation),
+      defaultValues: {
+        title: '',
+        category: '',
+        amount: 0,
+        type: 'deposit',
+        date: new Date().toISOString().substring(0, 10)
+      }
     }
-  })
+  )
   const onSubmit: SubmitHandler<FormSubmit> = (data) => {
     postData(data)
+    reset()
   }
 
   return (

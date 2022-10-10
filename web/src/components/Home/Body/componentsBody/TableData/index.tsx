@@ -9,8 +9,13 @@ import { Transaction } from '../../../../../global/interfaces/Transaction'
 
 export function TableData() {
   const [data, setData] = useState(Array<Transaction>)
+  const [currentData, setCurrentData] = useState<Transaction>()
+
   const [open, setOpen] = useState(false)
-  const handleOpen = () => setOpen(true)
+  const handleOpen = (data: Transaction) => {
+    setOpen(true)
+    setCurrentData(data)
+  }
   const handleClose = () => setOpen(false)
 
   useEffect(() => {
@@ -38,7 +43,9 @@ export function TableData() {
           <TableBody>
             {data.map((i) => (
               <TableRow
-                onClick={handleOpen}
+                onClick={() => {
+                  handleOpen(i)
+                }}
                 key={i.id}
                 sx={{
                   background: '#FFF'
@@ -66,7 +73,11 @@ export function TableData() {
           </TableBody>
         </MainTable>
       </TableContainer>
-      <TransactionEditModal open={open} onClose={handleClose} />
+      <TransactionEditModal
+        props={currentData}
+        open={open}
+        onClose={handleClose}
+      />
     </MainStack>
   )
 }
