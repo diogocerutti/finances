@@ -6,20 +6,23 @@ type CustomCellTypes = {
   color?: string
   align?: string
   onClick?: MouseEventHandler
+  width?: string
 }
 
 export function CustomCell({
   children,
   color,
   align,
-  onClick
+  onClick,
+  width
 }: CustomCellTypes) {
   return (
     <TableCell
       onClick={onClick}
       sx={{
         color: color,
-        align: align
+        align: align,
+        width: { width }
       }}
     >
       {children}

@@ -13,7 +13,13 @@ export const defaultTheme = createTheme(
       }
     },
     components: {
-      MuiTableHead: {}
+      MuiTableHead: {
+        styleOverrides: {
+          root: {
+            backgroundColor: '#E5E5E5'
+          }
+        }
+      }
     }
   },
   ptBR

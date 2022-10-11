@@ -7,7 +7,11 @@ export const validation = yup.object().shape({
     .required('Nome obrigatório.')
     .min(3, 'Limite mínimo de 3 caracteres.')
     .max(15, 'Limite máximo de 15 caracteres.'),
-  amount: yup.number().required('Preço obrigatório.'),
+  amount: yup
+    .number()
+    .required('Preço obrigatório.')
+    .typeError('Campo deve ser um número.')
+    .positive('Somente valores positivos.'),
   category: yup
     .string()
     .trim()

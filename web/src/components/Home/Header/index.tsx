@@ -3,7 +3,7 @@ import { Grid, Typography } from '@mui/material'
 import { HeaderGrid } from './componentsHeader/HeaderGrid'
 import { HeaderSubGrid } from './componentsHeader/HeaderSubGrid'
 import { TransactionButton } from './componentsHeader/TransactionButton'
-import { TransactionModal } from './componentsHeader/TransactionModal'
+import { TransactionModal } from '../TransactionModal'
 import { useState } from 'react'
 
 export function Header() {
@@ -33,7 +33,7 @@ export function Header() {
           </TransactionButton>
         </Grid>
       </HeaderSubGrid>
-      <TransactionModal open={open} onClose={handleClose} />
+      <TransactionModal type="post" open={open} onClose={handleClose} />
     </HeaderGrid>
   )
 }

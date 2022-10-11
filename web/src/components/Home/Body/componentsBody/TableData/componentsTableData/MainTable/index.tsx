@@ -8,7 +8,6 @@ type MainTableTypes = {
 export function MainTable({ children }: MainTableTypes) {
   return (
     <Table
-      stickyHeader
       sx={{
         display: { lg: 'table', md: 'table', sm: 'table', xs: 'none' }
       }}

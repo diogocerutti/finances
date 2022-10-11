@@ -2,34 +2,46 @@ import { Modal, IconButton, Stack } from '@mui/material'
 import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp'
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown'
 import CloseIcon from '@mui/icons-material/Close'
-import { FormStack } from '../../../TransactionModal/components/FormStack'
-import { FormTitle } from '../../../TransactionModal/components/FormTitle'
-import { TextFieldCustom } from '../../../TransactionModal/components/TextFieldCustom'
-import { TypeButtonCustom } from '../../../TransactionModal/components/TypeButtonCustom'
-import { SubmitButtonCustom } from '../../../TransactionModal/components/SubmitButtonCustom'
-import { ReactEventHandler } from 'react'
+import { FormStack } from './components/FormStack'
+import { FormTitle } from './components/FormTitle'
+import { TextFieldCustom } from './components/TextFieldCustom'
+import { TypeButtonCustom } from './components/TypeButtonCustom'
+import { SubmitButtonCustom } from './components/SubmitButtonCustom'
+import { ReactEventHandler, useMemo } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { validation } from '../../../../../validations/Home'
-import { FormSubmit } from '../../../../../global/interfaces/FormSubmit'
-import { postData } from '../../../../../service/posts/postData'
+import { validation } from 'validations/Home'
+import { FormSubmit } from 'global/interfaces/FormSubmit'
+import { Transaction } from 'global/interfaces/Transaction'
+import { postData } from 'service/posts/postData'
 
 type TransactionModalTypes = {
   open: boolean
   onClose: ReactEventHandler
+  props?: Transaction | undefined
+  type: 'post' | 'edit'
 }
 
-export function TransactionModal({ open, onClose }: TransactionModalTypes) {
+const defaultP = {
+  title: '',
+  amount: 0,
+  category: '',
+  type: 'deposit',
+  date: new Date().toISOString().substring(0, 10)
+}
+
+const other = {}
+
+export function TransactionModal({
+  open,
+  onClose,
+  type,
+  props
+}: TransactionModalTypes) {
   const { handleSubmit, control, setValue, watch, reset } = useForm<FormSubmit>(
     {
       resolver: yupResolver(validation),
-      defaultValues: {
-        title: '',
-        amount: 0,
-        category: '',
-        type: 'deposit',
-        date: new Date().toISOString().substring(0, 10)
-      }
+      defaultValues: type === 'post' ? defaultP : other
     }
   )
   const onSubmit: SubmitHandler<FormSubmit> = (data) => {

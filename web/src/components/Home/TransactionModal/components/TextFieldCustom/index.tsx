@@ -6,12 +6,14 @@ type TextFieldCustomTypes = {
   name: 'title' | 'amount' | 'category'
   label: string
   control: Control<FormSubmit>
+  placeholder?: string
 }
 
 export function TextFieldCustom({
   name,
   label,
-  control
+  control,
+  placeholder
 }: TextFieldCustomTypes) {
   return (
     <Controller
@@ -25,6 +27,7 @@ export function TextFieldCustom({
           variant="outlined"
           error={!!error}
           helperText={error?.message}
+          placeholder={placeholder}
           FormHelperTextProps={{
             sx: { background: '#F0F2F5', margin: 0 }
           }}
