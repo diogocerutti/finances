@@ -2,14 +2,20 @@ import { TableContainer, TableBody, TableHead, TableRow } from '@mui/material'
 import { MainStack } from './componentsTableData/MainStack'
 import { MainTable } from './componentsTableData/MainTable'
 import { CustomCell } from './componentsTableData/CustomCell'
-import { TransactionEditModal } from './componentsTableData/TransactionEditModal'
+import { TransactionModal } from 'components/Home/TransactionModal'
 import { getData } from '../../../../../service/gets/getData'
 import { useEffect, useState } from 'react'
 import { Transaction } from '../../../../../global/interfaces/Transaction'
 
 export function TableData() {
   const [data, setData] = useState(Array<Transaction>)
-  const [currentData, setCurrentData] = useState<Transaction>()
+  const [currentData, setCurrentData] = useState<Transaction>({
+    title: '',
+    category: '',
+    amount: 0,
+    date: '',
+    type: 'deposit'
+  })
 
   const [open, setOpen] = useState(false)
   const handleOpen = (data: Transaction) => {
@@ -73,8 +79,9 @@ export function TableData() {
           </TableBody>
         </MainTable>
       </TableContainer>
-      <TransactionEditModal
-        props={currentData}
+      <TransactionModal
+        type="put"
+        allFields={currentData}
         open={open}
         onClose={handleClose}
       />

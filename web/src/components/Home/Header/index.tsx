@@ -33,7 +33,18 @@ export function Header() {
           </TransactionButton>
         </Grid>
       </HeaderSubGrid>
-      <TransactionModal type="post" open={open} onClose={handleClose} />
+      <TransactionModal
+        allFields={{
+          title: '',
+          category: '',
+          amount: 0,
+          date: '',
+          type: 'deposit'
+        }}
+        type="post"
+        open={open}
+        onClose={handleClose}
+      />
     </HeaderGrid>
   )
 }

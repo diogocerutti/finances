@@ -7,47 +7,59 @@ import { FormTitle } from './components/FormTitle'
 import { TextFieldCustom } from './components/TextFieldCustom'
 import { TypeButtonCustom } from './components/TypeButtonCustom'
 import { SubmitButtonCustom } from './components/SubmitButtonCustom'
-import { ReactEventHandler, useMemo } from 'react'
+import { ReactEventHandler, useEffect } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { validation } from 'validations/Home'
 import { FormSubmit } from 'global/interfaces/FormSubmit'
 import { Transaction } from 'global/interfaces/Transaction'
 import { postData } from 'service/posts/postData'
+import { putData } from 'service/puts/putsData'
 
 type TransactionModalTypes = {
   open: boolean
   onClose: ReactEventHandler
-  props?: Transaction | undefined
-  type: 'post' | 'edit'
+  type: 'post' | 'put'
+  allFields: Transaction
 }
-
-const defaultP = {
-  title: '',
-  amount: 0,
-  category: '',
-  type: 'deposit',
-  date: new Date().toISOString().substring(0, 10)
-}
-
-const other = {}
 
 export function TransactionModal({
   open,
   onClose,
   type,
-  props
+  allFields
 }: TransactionModalTypes) {
-  const { handleSubmit, control, setValue, watch, reset } = useForm<FormSubmit>(
-    {
-      resolver: yupResolver(validation),
-      defaultValues: type === 'post' ? defaultP : other
+  const { handleSubmit, control, setValue, watch } = useForm<FormSubmit>({
+    resolver: yupResolver(validation),
+    defaultValues: {
+      title: '',
+      amount: 0,
+      category: '',
+      type: 'deposit',
+      date: new Date().toISOString().substring(0, 10)
     }
-  )
+  })
   const onSubmit: SubmitHandler<FormSubmit> = (data) => {
-    postData(data)
-    reset()
+    if (type === 'post') {
+      postData(data)
+    } else {
+      putData(data)
+    }
   }
+
+  function getFields() {
+    if (type === 'put') {
+      setValue('amount', allFields.amount)
+      setValue('category', allFields.category)
+      setValue('date', allFields.date)
+      setValue('title', allFields.title)
+      setValue('type', allFields.type)
+    }
+  }
+
+  useEffect(() => {
+    getFields()
+  }, [])
 
   return (
     <Modal
@@ -71,7 +83,9 @@ export function TransactionModal({
           />
         </IconButton>
         <FormStack onSubmit={(data) => handleSubmit(onSubmit)(data)}>
-          <FormTitle text="Cadastrar transação" />
+          <FormTitle
+            text={type === 'post' ? 'Cadastrar transação' : 'Editar transação'}
+          />
 
           <TextFieldCustom name="title" label="Nome" control={control} />
           <TextFieldCustom
@@ -119,7 +133,9 @@ export function TransactionModal({
             control={control}
           />
 
-          <SubmitButtonCustom>Cadastrar</SubmitButtonCustom>
+          <SubmitButtonCustom>
+            {type === 'post' ? 'Cadastrar' : 'Salvar'}
+          </SubmitButtonCustom>
         </FormStack>
       </>
     </Modal>
