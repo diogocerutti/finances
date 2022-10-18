@@ -9,13 +9,7 @@ import { Transaction } from '../../../../../global/interfaces/Transaction'
 
 export function TableData() {
   const [data, setData] = useState(Array<Transaction>)
-  const [currentData, setCurrentData] = useState<Transaction>({
-    title: '',
-    category: '',
-    amount: 0,
-    date: '',
-    type: 'deposit'
-  })
+  const [currentData, setCurrentData] = useState<Transaction>()
 
   const [open, setOpen] = useState(false)
   const handleOpen = (data: Transaction) => {
@@ -63,10 +57,11 @@ export function TableData() {
                   color={i.type === 'deposit' ? '#33CC95' : '#E52E4D'}
                 >
                   {i.type === 'deposit' ? 'R$ ' : '- R$ '}
-                  {parseFloat(i.amount.toFixed(2)).toLocaleString('pt-BR', {
-                    currency: 'BRL',
-                    minimumFractionDigits: 2
-                  })}
+                  {i.amount &&
+                    parseFloat(i.amount.toFixed(2)).toLocaleString('pt-BR', {
+                      currency: 'BRL',
+                      minimumFractionDigits: 2
+                    })}
                 </CustomCell>
                 <CustomCell align="left" color="#969CB2">
                   {i.category}

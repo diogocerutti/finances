@@ -49,36 +49,12 @@
       "id": 7
     },
     {
-      "category": "novo",
-      "amount": 131,
-      "title": "novo",
+      "category": "Comida",
+      "amount": 60,
+      "title": "Fruta",
       "type": "withdraw",
-      "date": "2022-10-10",
+      "date": "2022-10-18",
       "id": 8
-    },
-    {
-      "category": "ddw",
-      "amount": 232,
-      "title": "asd",
-      "type": "deposit",
-      "date": "2022-10-11",
-      "id": 9
-    },
-    {
-      "category": "3rtv",
-      "amount": 3535,
-      "title": "asdasd",
-      "type": "deposit",
-      "date": "2022-10-17",
-      "id": 10
-    },
-    {
-      "category": "3rtv",
-      "amount": 3535,
-      "title": "ultimo",
-      "type": "deposit",
-      "date": "2022-10-17",
-      "id": 11
     }
   ]
 }

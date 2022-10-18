@@ -11,7 +11,7 @@ export const validation = yup.object().shape({
     .number()
     .required('Preço obrigatório.')
     .typeError('Campo deve ser um número.')
-    .positive('Somente valores positivos.'),
+    .min(0, 'Somente valores positivos.'),
   category: yup
     .string()
     .trim()

@@ -1,13 +1,13 @@
 import { Button } from '@mui/material'
 import { MouseEventHandler, ReactNode } from 'react'
 import { Controller, Control } from 'react-hook-form'
-import { FormSubmit } from '../../../../../global/interfaces/FormSubmit'
+import { Transaction } from '../../../../../global/interfaces/Transaction'
 
 type TypeButtonCustomTypes = {
   onClick: MouseEventHandler
   background: string
   children: ReactNode
-  control: Control<FormSubmit>
+  control: Control<Transaction>
   name: 'title' | 'type' | 'category' | 'amount'
 }
 

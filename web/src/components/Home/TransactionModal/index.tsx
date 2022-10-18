@@ -7,11 +7,10 @@ import { FormTitle } from './components/FormTitle'
 import { TextFieldCustom } from './components/TextFieldCustom'
 import { TypeButtonCustom } from './components/TypeButtonCustom'
 import { SubmitButtonCustom } from './components/SubmitButtonCustom'
-import { ReactEventHandler, useEffect } from 'react'
+import { ReactEventHandler, useCallback, useEffect } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { validation } from 'validations/Home'
-import { FormSubmit } from 'global/interfaces/FormSubmit'
 import { Transaction } from 'global/interfaces/Transaction'
 import { postData } from 'service/posts/postData'
 import { putData } from 'service/puts/putsData'
@@ -20,7 +19,7 @@ type TransactionModalTypes = {
   open: boolean
   onClose: ReactEventHandler
   type: 'post' | 'put'
-  allFields: Transaction
+  allFields?: Transaction
 }
 
 export function TransactionModal({
@@ -29,7 +28,7 @@ export function TransactionModal({
   type,
   allFields
 }: TransactionModalTypes) {
-  const { handleSubmit, control, setValue, watch } = useForm<FormSubmit>({
+  const { handleSubmit, control, setValue, watch } = useForm<Transaction>({
     resolver: yupResolver(validation),
     defaultValues: {
       title: '',
@@ -39,26 +38,36 @@ export function TransactionModal({
       date: new Date().toISOString().substring(0, 10)
     }
   })
-  const onSubmit: SubmitHandler<FormSubmit> = (data) => {
+  const onSubmit: SubmitHandler<Transaction> = (data) => {
     if (type === 'post') {
       postData(data)
-    } else {
+    }
+    if (type === 'put') {
       putData(data)
     }
   }
 
   function getFields() {
     if (type === 'put') {
-      setValue('amount', allFields.amount)
-      setValue('category', allFields.category)
-      setValue('date', allFields.date)
-      setValue('title', allFields.title)
-      setValue('type', allFields.type)
+      console.log('entrou')
+      if (allFields?.amount) {
+        console.log(allFields.id)
+        setValue('id', allFields.id)
+        setValue('amount', allFields.amount)
+        setValue('category', allFields.category)
+        setValue('date', allFields.date)
+        setValue('title', allFields.title)
+        setValue('type', allFields.type)
+      }
     }
   }
 
-  useEffect(() => {
+  const callBackFields = useCallback(() => {
     getFields()
+  }, [])
+
+  useEffect(() => {
+    callBackFields()
   }, [])
 
   return (

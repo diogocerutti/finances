@@ -20,13 +20,15 @@ export function CardValues() {
     getTransactions()
   }, [])
 
-  const deposits = data
-    .filter((i) => i.type === 'deposit')
-    .reduce((sum, current) => sum + current.amount, 0)
+  const deposits =
+    data &&
+    data
+      .filter((i) => i.type === 'deposit')
+      .reduce((sum, current) => sum + current?.amount, 0)
 
   const withdraws = data
     .filter((i) => i.type === 'withdraw')
-    .reduce((sum, current) => sum + current.amount, 0)
+    .reduce((sum, current) => sum + current?.amount, 0)
 
   const total = deposits - withdraws
 

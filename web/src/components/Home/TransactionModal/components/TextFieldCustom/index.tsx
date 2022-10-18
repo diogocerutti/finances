@@ -1,11 +1,11 @@
 import { TextField } from '@mui/material'
 import { Controller, Control } from 'react-hook-form'
-import { FormSubmit } from '../../../../../global/interfaces/FormSubmit'
+import { Transaction } from '../../../../../global/interfaces/Transaction'
 
 type TextFieldCustomTypes = {
   name: 'title' | 'amount' | 'category'
   label: string
-  control: Control<FormSubmit>
+  control: Control<Transaction>
   placeholder?: string
 }
 
