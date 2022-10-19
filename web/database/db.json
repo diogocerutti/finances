@@ -47,14 +47,6 @@
       "type": "deposit",
       "date": "2022-10-10",
       "id": 7
-    },
-    {
-      "category": "Comida",
-      "amount": 60,
-      "title": "Fruta",
-      "type": "withdraw",
-      "date": "2022-10-18",
-      "id": 8
     }
   ]
 }

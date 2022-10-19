@@ -7,7 +7,7 @@ import { FormTitle } from './components/FormTitle'
 import { TextFieldCustom } from './components/TextFieldCustom'
 import { TypeButtonCustom } from './components/TypeButtonCustom'
 import { SubmitButtonCustom } from './components/SubmitButtonCustom'
-import { ReactEventHandler, useCallback, useEffect } from 'react'
+import { ReactEventHandler, useEffect, useCallback } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { validation } from 'validations/Home'
@@ -49,9 +49,7 @@ export function TransactionModal({
 
   function getFields() {
     if (type === 'put') {
-      console.log('entrou')
       if (allFields?.amount) {
-        console.log(allFields.id)
         setValue('id', allFields.id)
         setValue('amount', allFields.amount)
         setValue('category', allFields.category)
@@ -69,8 +67,7 @@ export function TransactionModal({
 
   useEffect(() => {
     callBackFields()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [callBackFields])
 
   return (
     <Modal
