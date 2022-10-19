@@ -12,7 +12,7 @@ export function SubGrid({ children, background }: SubGridTypes) {
       item
       width={{ lg: '352px', md: 'auto', sm: 'auto', xs: 'auto' }}
       sx={{
-        background: background,
+        background,
         borderRadius: 1,
         height: 'auto',
         padding: 3

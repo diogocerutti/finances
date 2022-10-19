@@ -64,10 +64,12 @@ export function TransactionModal({
 
   const callBackFields = useCallback(() => {
     getFields()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
     callBackFields()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (

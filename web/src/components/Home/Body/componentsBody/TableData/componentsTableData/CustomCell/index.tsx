@@ -20,8 +20,8 @@ export function CustomCell({
     <TableCell
       onClick={onClick}
       sx={{
-        color: color,
-        align: align,
+        color,
+        align,
         width: { width }
       }}
     >

@@ -30,7 +30,7 @@ export function TypeButtonCustom({
             width: '236px',
             fontSize: '16px',
             height: '64px',
-            background: background,
+            background,
             color: '#363F5F',
             fontWeight: 400
           }}
