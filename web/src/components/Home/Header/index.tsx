@@ -2,14 +2,14 @@ import PaidIcon from '@mui/icons-material/Paid'
 import { Grid, Typography } from '@mui/material'
 import { HeaderGrid } from './componentsHeader/HeaderGrid'
 import { HeaderSubGrid } from './componentsHeader/HeaderSubGrid'
-// import { TransactionButton } from './componentsHeader/TransactionButton'
-// import { TransactionModal } from '../TransactionModal'
-// import { useState } from 'react'
+import { TransactionButton } from './componentsHeader/TransactionButton'
+import { TransactionModal } from '../TransactionModal'
+import { useState } from 'react'
 
 export function Header() {
-  // const [open, setOpen] = useState(false)
-  // const handleOpen = () => setOpen(true)
-  // const handleClose = () => setOpen(false)
+  const [open, setOpen] = useState(false)
+  const handleOpen = () => setOpen(true)
+  const handleClose = () => setOpen(false)
 
   return (
     <HeaderGrid>
@@ -28,12 +28,12 @@ export function Header() {
           </Grid>
         </Grid>
         <Grid item>
-          {/* <TransactionButton onClick={handleOpen}>
+          <TransactionButton onClick={handleOpen}>
             Nova transação
-          </TransactionButton> */}
+          </TransactionButton>
         </Grid>
       </HeaderSubGrid>
-      {/* <TransactionModal type="post" open={open} onClose={handleClose} /> */}
+      <TransactionModal type="post" open={open} onClose={handleClose} />
     </HeaderGrid>
   )
 }

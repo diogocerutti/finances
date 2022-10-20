@@ -7,7 +7,7 @@ export function Body() {
     <Grid
       container
       justifyContent="center"
-      sx={{ background: '#E5E5E5', height: 'auto', maxHeight: '454.08px' }}
+      sx={{ background: '#E5E5E5', height: 'auto' }}
     >
       <Stack
         spacing={5}

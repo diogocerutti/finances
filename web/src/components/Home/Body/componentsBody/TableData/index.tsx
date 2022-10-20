@@ -50,7 +50,11 @@ export function TableData() {
 
   return (
     <MainStack>
-      <TextField onChange={(e) => searchItems(e.target.value)}>
+      <TextField
+        placeholder="Pesquisar"
+        sx={{ width: '50%', alignSelf: 'center', background: '#FFF' }}
+        onChange={(e) => searchItems(e.target.value)}
+      >
         Pesquisar
       </TextField>
       <TableContainer sx={{ maxHeight: '322.08px' }}>

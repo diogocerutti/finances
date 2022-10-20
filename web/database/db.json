@@ -41,12 +41,20 @@
       "id": 6
     },
     {
-      "category": "asdasd",
-      "amount": 10,
-      "title": "Alface",
+      "category": "Testando",
+      "amount": 70,
+      "title": "Cuidado",
       "type": "deposit",
-      "date": "2022-10-10",
+      "date": "2022-10-20",
       "id": 7
+    },
+    {
+      "category": "Puts",
+      "amount": 242,
+      "title": "Nome",
+      "type": "deposit",
+      "date": "2022-10-20",
+      "id": 8
     }
   ]
 }

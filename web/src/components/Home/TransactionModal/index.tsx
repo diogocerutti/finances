@@ -7,7 +7,7 @@ import { FormTitle } from './components/FormTitle'
 import { TextFieldCustom } from './components/TextFieldCustom'
 import { TypeButtonCustom } from './components/TypeButtonCustom'
 import { SubmitButtonCustom } from './components/SubmitButtonCustom'
-import { ReactEventHandler, useEffect, useCallback } from 'react'
+import { ReactEventHandler, useEffect } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { validation } from 'validations/Home'
@@ -47,27 +47,16 @@ export function TransactionModal({
     }
   }
 
-  function getFields() {
-    if (type === 'put') {
-      if (allFields?.amount) {
-        setValue('id', allFields.id)
-        setValue('amount', allFields.amount)
-        setValue('category', allFields.category)
-        setValue('date', allFields.date)
-        setValue('title', allFields.title)
-        setValue('type', allFields.type)
-      }
-    }
-  }
-
-  const callBackFields = useCallback(() => {
-    getFields()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
   useEffect(() => {
-    callBackFields()
-  }, [callBackFields])
+    if (allFields) {
+      setValue('id', allFields.id)
+      setValue('amount', allFields.amount)
+      setValue('category', allFields.category)
+      setValue('date', allFields.date)
+      setValue('title', allFields.title)
+      setValue('type', allFields.type)
+    }
+  }, [allFields])
 
   return (
     <Modal
