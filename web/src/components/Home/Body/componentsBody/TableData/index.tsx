@@ -3,14 +3,15 @@ import {
   TableBody,
   TableHead,
   TableRow,
-  TextField
+  TextField,
+  Stack
 } from '@mui/material'
 import { MainStack } from './componentsTableData/MainStack'
 import { MainTable } from './componentsTableData/MainTable'
 import { CustomCell } from './componentsTableData/CustomCell'
 import { TransactionModal } from 'components/Home/TransactionModal'
 import { getData } from '../../../../../service/gets/getData'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Transaction } from '../../../../../global/interfaces/Transaction'
 import DeleteIcon from '@mui/icons-material/Delete'
 import EditIcon from '@mui/icons-material/Edit'
@@ -20,6 +21,11 @@ export function TableData() {
   const [data, setData] = useState(Array<Transaction>)
   const [currentData, setCurrentData] = useState<Transaction>()
   const [filteredResults, setFilteredResults] = useState(Array<Transaction>)
+
+  const handleGetData = useCallback(async () => {
+    const response = await getData()
+    setData(response)
+  }, [])
 
   const [searchInput, setSearchInput] = useState('')
 
@@ -45,8 +51,9 @@ export function TableData() {
   }
 
   useEffect(() => {
-    getData().then((data) => setData(data))
-  }, [])
+    // getData().then((data) => setData(data))
+    handleGetData()
+  }, [handleGetData])
 
   return (
     <MainStack>
@@ -107,20 +114,22 @@ export function TableData() {
                       <CustomCell align="left" color="#969CB2">
                         {i.date}
                       </CustomCell>
-                      <CustomCell align="left" color="black">
-                        <EditIcon
-                          sx={{ color: '#33CC94' }}
-                          onClick={() => {
-                            handleOpen()
-                            setCurrentData(i)
-                          }}
-                        />
-                        <DeleteIcon
-                          onClick={() => {
-                            deleteData(i)
-                          }}
-                          sx={{ color: '#E93376' }}
-                        />
+                      <CustomCell align="left" width="0px">
+                        <Stack direction="row" spacing={5}>
+                          <EditIcon
+                            sx={{ color: '#33CC94' }}
+                            onClick={() => {
+                              handleOpen()
+                              setCurrentData(i)
+                            }}
+                          />
+                          <DeleteIcon
+                            onClick={() => {
+                              deleteData(i)
+                            }}
+                            sx={{ color: '#E93376' }}
+                          />
+                        </Stack>
                       </CustomCell>
                     </TableRow>
                   )
@@ -153,20 +162,22 @@ export function TableData() {
                     <CustomCell align="left" color="#969CB2">
                       {i.date}
                     </CustomCell>
-                    <CustomCell align="left" color="black">
-                      <EditIcon
-                        sx={{ color: '#33CC94' }}
-                        onClick={() => {
-                          handleOpen()
-                          setCurrentData(i)
-                        }}
-                      />
-                      <DeleteIcon
-                        onClick={() => {
-                          deleteData(i)
-                        }}
-                        sx={{ color: '#E93376' }}
-                      />
+                    <CustomCell align="left" width="0px">
+                      <Stack direction="row" spacing={5}>
+                        <EditIcon
+                          sx={{ color: '#33CC94' }}
+                          onClick={() => {
+                            handleOpen()
+                            setCurrentData(i)
+                          }}
+                        />
+                        <DeleteIcon
+                          onClick={() => {
+                            deleteData(i)
+                          }}
+                          sx={{ color: '#E93376' }}
+                        />
+                      </Stack>
                     </CustomCell>
                   </TableRow>
                 ))}

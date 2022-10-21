@@ -4,9 +4,10 @@ import { ReactNode, MouseEventHandler } from 'react'
 type CustomCellTypes = {
   children: ReactNode
   color?: string
-  align?: string
+  align?: 'inherit' | 'left' | 'right' | 'center' | 'justify' | undefined
   onClick?: MouseEventHandler
   width?: string
+  padding?: string
 }
 
 export function CustomCell({
@@ -14,15 +15,17 @@ export function CustomCell({
   color,
   align,
   onClick,
-  width
+  width,
+  padding
 }: CustomCellTypes) {
   return (
     <TableCell
       onClick={onClick}
+      align={align}
       sx={{
-        color,
-        align,
-        width: { width }
+        color: { color },
+        width: { width },
+        padding: { padding }
       }}
     >
       {children}
