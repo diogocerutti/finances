@@ -6,7 +6,11 @@ import { TransactionButton } from './componentsHeader/TransactionButton'
 import { TransactionModal } from '../TransactionModal'
 import { useState } from 'react'
 
-export function Header() {
+type HeaderTypes = {
+  handleGetTransactions: () => void
+}
+
+export function Header({ handleGetTransactions }: HeaderTypes) {
   const [open, setOpen] = useState(false)
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
@@ -33,7 +37,12 @@ export function Header() {
           </TransactionButton>
         </Grid>
       </HeaderSubGrid>
-      <TransactionModal type="post" open={open} onClose={handleClose} />
+      <TransactionModal
+        handleGetTransactions={handleGetTransactions}
+        type="post"
+        open={open}
+        onClose={handleClose}
+      />
     </HeaderGrid>
   )
 }

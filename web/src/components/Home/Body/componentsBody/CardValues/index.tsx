@@ -4,29 +4,20 @@ import { SubGrid } from './componentsCardValues/SubGrid'
 import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp'
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown'
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney'
-import { useEffect, useState } from 'react'
 import { Transaction } from '../../../../../global/interfaces/Transaction'
-import { getData } from '../../../../../service/gets/getData'
 
-export function CardValues() {
-  const [data, setData] = useState(Array<Transaction>)
+type CardValuesTypes = {
+  transactions: Transaction[]
+}
 
-  useEffect(() => {
-    const getTransactions = async () => {
-      const data = await getData()
-      setData(data)
-    }
-
-    getTransactions()
-  }, [])
-
+export function CardValues({ transactions }: CardValuesTypes) {
   const deposits =
-    data &&
-    data
+    transactions &&
+    transactions
       .filter((i) => i.type === 'deposit')
       .reduce((sum, current) => sum + current?.amount, 0)
 
-  const withdraws = data
+  const withdraws = transactions
     .filter((i) => i.type === 'withdraw')
     .reduce((sum, current) => sum + current?.amount, 0)
 

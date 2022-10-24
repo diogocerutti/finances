@@ -49,12 +49,28 @@
       "id": 7
     },
     {
-      "category": "Puts",
-      "amount": 242,
-      "title": "Nome",
+      "category": "Dê certo",
+      "amount": 100,
+      "title": "Talvez",
       "type": "deposit",
       "date": "2022-10-20",
       "id": 8
+    },
+    {
+      "category": "AAAA",
+      "amount": 20,
+      "title": "Nome",
+      "type": "deposit",
+      "date": "2022-10-24",
+      "id": 9
+    },
+    {
+      "category": "juju",
+      "amount": 55,
+      "title": "fueda",
+      "type": "withdraw",
+      "date": "2022-10-24",
+      "id": 10
     }
   ]
 }

@@ -20,13 +20,15 @@ type TransactionModalTypes = {
   onClose: ReactEventHandler
   type: 'post' | 'put'
   allFields?: Transaction
+  handleGetTransactions: () => void
 }
 
 export function TransactionModal({
   open,
   onClose,
   type,
-  allFields
+  allFields,
+  handleGetTransactions
 }: TransactionModalTypes) {
   const { handleSubmit, control, setValue, watch } = useForm<Transaction>({
     resolver: yupResolver(validation),
@@ -44,6 +46,7 @@ export function TransactionModal({
     }
     if (type === 'put') {
       putData(data)
+      handleGetTransactions()
     }
   }
 

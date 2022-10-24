@@ -10,22 +10,29 @@ import { MainStack } from './componentsTableData/MainStack'
 import { MainTable } from './componentsTableData/MainTable'
 import { CustomCell } from './componentsTableData/CustomCell'
 import { TransactionModal } from 'components/Home/TransactionModal'
-import { getData } from '../../../../../service/gets/getData'
-import { useCallback, useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Transaction } from '../../../../../global/interfaces/Transaction'
 import DeleteIcon from '@mui/icons-material/Delete'
 import EditIcon from '@mui/icons-material/Edit'
 import { deleteData } from 'service/deletes/deleteData'
 
-export function TableData() {
-  const [data, setData] = useState(Array<Transaction>)
+type TableDataTypes = {
+  transactions: Transaction[]
+  handleGetTransactions: () => void
+}
+
+export function TableData({
+  transactions,
+  handleGetTransactions
+}: TableDataTypes) {
+  // const [data, setData] = useState(Array<Transaction>)
   const [currentData, setCurrentData] = useState<Transaction>()
   const [filteredResults, setFilteredResults] = useState(Array<Transaction>)
 
-  const handleGetData = useCallback(async () => {
-    const response = await getData()
-    setData(response)
-  }, [])
+  // const handleGetTransactions = useCallback(async () => {
+  //   const response = await getData()
+  //   setData(response)
+  // }, [])
 
   const [searchInput, setSearchInput] = useState('')
 
@@ -38,7 +45,7 @@ export function TableData() {
   const searchItems = (searchValue: string) => {
     setSearchInput(searchValue)
     if (searchInput !== '') {
-      const filteredData = data.filter((item) => {
+      const filteredData = transactions.filter((item) => {
         return Object.values(item)
           .join('')
           .toLowerCase()
@@ -46,14 +53,14 @@ export function TableData() {
       })
       setFilteredResults(filteredData)
     } else {
-      setFilteredResults(data)
+      setFilteredResults(transactions)
     }
   }
 
-  useEffect(() => {
-    // getData().then((data) => setData(data))
-    handleGetData()
-  }, [handleGetData])
+  // useEffect(() => {
+  //   // getData().then((data) => setData(data))
+  //   handleGetTransactions()
+  // }, [handleGetTransactions])
 
   return (
     <MainStack>
@@ -134,7 +141,7 @@ export function TableData() {
                     </TableRow>
                   )
                 })
-              : data.map((i) => (
+              : transactions.map((i) => (
                   <TableRow
                     key={i.id}
                     sx={{
@@ -187,6 +194,7 @@ export function TableData() {
       <TransactionModal
         type="put"
         allFields={currentData}
+        handleGetTransactions={handleGetTransactions}
         open={open}
         onClose={handleClose}
       />

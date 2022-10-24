@@ -1,8 +1,14 @@
 import { Grid, Stack } from '@mui/material'
 import { CardValues } from './componentsBody/CardValues'
 import { TableData } from './componentsBody/TableData'
+import { Transaction } from 'global/interfaces/Transaction'
 
-export function Body() {
+type BodyTypes = {
+  transactions: Transaction[]
+  handleGetTransactions: () => void
+}
+
+export function Body({ transactions, handleGetTransactions }: BodyTypes) {
   return (
     <Grid
       container
@@ -16,8 +22,11 @@ export function Body() {
           bottom: '68px'
         }}
       >
-        <CardValues />
-        <TableData />
+        <CardValues transactions={transactions} />
+        <TableData
+          transactions={transactions}
+          handleGetTransactions={handleGetTransactions}
+        />
       </Stack>
     </Grid>
   )
