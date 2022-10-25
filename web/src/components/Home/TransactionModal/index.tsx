@@ -30,6 +30,8 @@ export function TransactionModal({
   allFields,
   handleGetTransactions
 }: TransactionModalTypes) {
+  const date = new Date()
+
   const { handleSubmit, control, setValue, watch } = useForm<Transaction>({
     resolver: yupResolver(validation),
     defaultValues: {
@@ -37,7 +39,8 @@ export function TransactionModal({
       amount: 0,
       category: '',
       type: 'deposit',
-      date: new Date().toISOString().substring(0, 10)
+      date:
+        date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear()
     }
   })
   const onSubmit: SubmitHandler<Transaction> = (data) => {
@@ -71,18 +74,21 @@ export function TransactionModal({
       }}
     >
       <>
-        <IconButton
-          onClick={onClose}
-          sx={{ position: 'absolute', right: '29%', top: '11%' }}
-        >
-          <CloseIcon
-            sx={{
-              color: '#A8A8B3',
-              display: { lg: 'flex', md: 'flex', sm: 'flex', xs: 'none' }
-            }}
-          />
-        </IconButton>
         <FormStack onSubmit={(data) => handleSubmit(onSubmit)(data)}>
+          <IconButton
+            onClick={onClose}
+            sx={{ display: 'inline-block', position: 'relative', padding: 0 }}
+          >
+            <CloseIcon
+              sx={{
+                color: '#A8A8B3',
+                display: { lg: 'flex', md: 'flex', sm: 'flex', xs: 'none' },
+                position: 'absolute',
+                top: 0,
+                right: 0
+              }}
+            />
+          </IconButton>
           <FormTitle
             text={type === 'post' ? 'Cadastrar transação' : 'Editar transação'}
           />

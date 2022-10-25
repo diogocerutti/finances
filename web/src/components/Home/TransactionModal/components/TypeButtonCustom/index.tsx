@@ -32,7 +32,9 @@ export function TypeButtonCustom({
             height: '64px',
             background,
             color: '#363F5F',
-            fontWeight: 400
+            fontWeight: 400,
+            border: 1,
+            borderColor: '#A8A8B3'
           }}
         >
           {children}

@@ -1,76 +1,44 @@
 {
   "finances": [
     {
-      "id": 1,
-      "title": "Desenvolvimento de site",
-      "type": "deposit",
-      "amount": 1000,
-      "category": "Casa",
-      "date": "2021-02-01"
-    },
-    {
-      "id": 2,
+      "category": "Automóveis",
+      "amount": 7000,
       "title": "Carro",
       "type": "withdraw",
-      "amount": 1000,
-      "category": "Transporte",
-      "date": "2021-02-01"
+      "date": "25/10/2022",
+      "id": 1
     },
     {
-      "id": 3,
-      "title": "Viagem",
+      "category": "Finanças",
+      "amount": 4000,
+      "title": "Pagamento",
+      "type": "deposit",
+      "date": "25/10/2022",
+      "id": 2
+    },
+    {
+      "category": "Bens",
+      "amount": 2500,
+      "title": "Crédito",
+      "type": "deposit",
+      "date": "25/10/2022",
+      "id": 3
+    },
+    {
+      "category": "Alimentação",
+      "amount": 15,
+      "title": "Arroz",
       "type": "withdraw",
-      "amount": 1000,
-      "category": "laser",
-      "date": "2021-02-01"
+      "date": "25/10/2022",
+      "id": 4
     },
     {
-      "id": 4,
-      "title": "Doação",
-      "type": "deposit",
-      "amount": 1300,
-      "category": "Terceiros",
-      "date": "2021-02-01"
-    },
-    {
-      "category": "uiii",
-      "amount": 200,
-      "title": "Brabo",
-      "type": "withdraw",
-      "date": "2022-10-07",
-      "id": 6
-    },
-    {
-      "category": "Testando",
-      "amount": 70,
-      "title": "Cuidado",
-      "type": "deposit",
-      "date": "2022-10-20",
-      "id": 7
-    },
-    {
-      "category": "Dê certo",
-      "amount": 100,
-      "title": "Talvez",
-      "type": "deposit",
-      "date": "2022-10-20",
-      "id": 8
-    },
-    {
-      "category": "AAAA",
-      "amount": 20,
+      "category": "Algo",
+      "amount": 58,
       "title": "Nome",
       "type": "deposit",
-      "date": "2022-10-24",
-      "id": 9
-    },
-    {
-      "category": "juju",
-      "amount": 55,
-      "title": "fueda",
-      "type": "withdraw",
-      "date": "2022-10-24",
-      "id": 10
+      "date": "25/10/2022",
+      "id": 5
     }
   ]
 }

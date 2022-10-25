@@ -9,7 +9,9 @@ export function MainTable({ children }: MainTableTypes) {
   return (
     <Table
       sx={{
-        display: { lg: 'table', md: 'table', sm: 'table', xs: 'none' }
+        display: { lg: 'table', md: 'table', sm: 'table', xs: 'none' },
+        borderCollapse: 'separate',
+        borderSpacing: '0px 8px'
       }}
     >
       {children}
