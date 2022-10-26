@@ -33,9 +33,9 @@
       "id": 4
     },
     {
-      "category": "Algo",
+      "title": "Algo",
       "amount": 58,
-      "title": "Nome",
+      "category": "Algo",
       "type": "deposit",
       "date": "25/10/2022",
       "id": 5

@@ -1,6 +1,6 @@
 import { Grid, Typography } from '@mui/material'
-import { MainGrid } from './componentsCardValues/MainGrid'
-import { SubGrid } from './componentsCardValues/SubGrid'
+import { MainGrid } from './components/MainGrid'
+import { SubGrid } from './components/SubGrid'
 import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp'
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown'
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney'

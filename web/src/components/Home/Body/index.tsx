@@ -1,6 +1,6 @@
 import { Grid, Stack } from '@mui/material'
-import { CardValues } from './componentsBody/CardValues'
-import { TableData } from './componentsBody/TableData'
+import { CardValues } from './components/CardValues'
+import { TableData } from './components/TableData'
 import { Transaction } from 'global/interfaces/Transaction'
 
 type BodyTypes = {

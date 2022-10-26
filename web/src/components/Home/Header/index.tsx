@@ -1,8 +1,8 @@
 import PaidIcon from '@mui/icons-material/Paid'
 import { Grid, Typography } from '@mui/material'
-import { HeaderGrid } from './componentsHeader/HeaderGrid'
-import { HeaderSubGrid } from './componentsHeader/HeaderSubGrid'
-import { TransactionButton } from './componentsHeader/TransactionButton'
+import { HeaderGrid } from './components/HeaderGrid'
+import { HeaderSubGrid } from './components/HeaderSubGrid'
+import { TransactionButton } from './components/TransactionButton'
 import { TransactionModal } from '../TransactionModal'
 import { useState } from 'react'
 

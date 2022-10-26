@@ -6,9 +6,9 @@ import {
   TextField,
   Stack
 } from '@mui/material'
-import { MainStack } from './componentsTableData/MainStack'
-import { MainTable } from './componentsTableData/MainTable'
-import { CustomCell } from './componentsTableData/CustomCell'
+import { MainStack } from './components/MainStack'
+import { MainTable } from './components/MainTable'
+import { CustomCell } from './components/CustomCell'
 import { TransactionModal } from 'components/Home/TransactionModal'
 import { useState } from 'react'
 import { Transaction } from '../../../../../global/interfaces/Transaction'
