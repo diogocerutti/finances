@@ -33,12 +33,20 @@
       "id": 4
     },
     {
-      "title": "Algo",
+      "title": "Teste",
       "amount": 58,
       "category": "Algo",
       "type": "deposit",
       "date": "25/10/2022",
       "id": 5
+    },
+    {
+      "title": "Nome",
+      "amount": 0,
+      "category": "Nome",
+      "type": "withdraw",
+      "date": "28/10/2022",
+      "id": 6
     }
   ]
 }

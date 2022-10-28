@@ -7,7 +7,7 @@ import { TransactionModal } from '../TransactionModal'
 import { useState } from 'react'
 
 type HeaderTypes = {
-  handleGetTransactions: () => void
+  handleGetTransactions: () => Promise<void>
 }
 
 export function Header({ handleGetTransactions }: HeaderTypes) {

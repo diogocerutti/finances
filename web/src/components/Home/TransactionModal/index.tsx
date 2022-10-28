@@ -20,7 +20,7 @@ type TransactionModalTypes = {
   onClose: ReactEventHandler
   type: 'post' | 'put'
   allFields?: Transaction
-  handleGetTransactions: () => void
+  handleGetTransactions: () => Promise<void>
 }
 
 export function TransactionModal({
@@ -43,13 +43,14 @@ export function TransactionModal({
         date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear()
     }
   })
-  const onSubmit: SubmitHandler<Transaction> = (data) => {
+  const onSubmit: SubmitHandler<Transaction> = async (data) => {
     if (type === 'post') {
-      postData(data)
+      await postData(data)
+      return await handleGetTransactions()
     }
     if (type === 'put') {
-      putData(data)
-      handleGetTransactions()
+      await putData(data)
+      return await handleGetTransactions()
     }
   }
 
@@ -62,7 +63,7 @@ export function TransactionModal({
       setValue('title', allFields.title)
       setValue('type', allFields.type)
     }
-  }, [allFields])
+  }, [allFields, setValue])
 
   return (
     <Modal

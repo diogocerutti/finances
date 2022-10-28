@@ -18,7 +18,7 @@ import { deleteData } from 'service/deletes/deleteData'
 
 type TableDataTypes = {
   transactions: Transaction[]
-  handleGetTransactions: () => void
+  handleGetTransactions: () => Promise<void>
 }
 
 export function TableData({

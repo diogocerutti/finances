@@ -5,7 +5,7 @@ import { Transaction } from 'global/interfaces/Transaction'
 
 type BodyTypes = {
   transactions: Transaction[]
-  handleGetTransactions: () => void
+  handleGetTransactions: () => Promise<void>
 }
 
 export function Body({ transactions, handleGetTransactions }: BodyTypes) {
