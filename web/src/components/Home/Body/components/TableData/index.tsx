@@ -133,7 +133,7 @@ export function TableData({
                   <TableRow
                     key={i.id}
                     sx={{
-                      background: '#FFF'
+                      background: '#FFFF'
                     }}
                   >
                     <CustomCell color="#363F5F">{i.title}</CustomCell>
